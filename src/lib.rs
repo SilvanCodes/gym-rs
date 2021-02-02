@@ -8,6 +8,8 @@ use cpython::*;
 use failure::Fail;
 use rand::Rng;
 
+pub mod utility;
+
 type DiscreteType = usize;
 type VectorType<T> = ndarray::Array1<T>;
 pub type Action = SpaceData;
