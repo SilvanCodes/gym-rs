@@ -331,6 +331,12 @@ impl<'a> Environment<'a> {
     }
 }
 
+impl<'a> Drop for Environment<'a> {
+    fn drop(&mut self) {
+        self.close();
+    }
+}
+
 impl Default for GymClient {
     fn default() -> Self {
         // Get python
