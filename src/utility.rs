@@ -1,6 +1,6 @@
 use crate::GymClient;
 use crate::State;
-use ndarray::{stack, Array1, Array2, ArrayView1, ArrayView2, ArrayViewMut1, Axis};
+use ndarray::{concatenate, Array1, Array2, ArrayView1, ArrayView2, ArrayViewMut1, Axis};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
@@ -53,7 +53,7 @@ impl StandardScaler {
         for _ in 0..num_samples {
             let State { observation, .. } = env.step(&env.action_space().sample()).unwrap();
 
-            samples = stack![
+            samples = concatenate![
                 Axis(0),
                 samples,
                 observation.get_box().unwrap().insert_axis(Axis(0))
